@@ -1,0 +1,91 @@
+
+
+
+<style>
+.sidebar{
+      width:260px;
+      min-height:100vh;
+      border-right:1px solid hsl(210 16% 92%);
+      background:rgba(255,255,255,.6);
+      backdrop-filter:saturate(180%) blur(8px);
+      position:sticky;
+      top:0
+    }
+
+    [data-theme="dark"] .sidebar{
+      background:rgba(20,24,28,.5);
+      border-color:hsl(210 10% 20%)
+    }
+    
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      padding:1rem
+    }
+
+    .logo{
+      width:40px;
+      height:40px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--primary),var(--primary-glow));
+      display:grid;
+      place-items:center;
+      color:#fff;
+      box-shadow:var(--shadow)
+    }
+
+    .menu{
+      padding:.5rem
+    }
+
+    .menu a{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      padding:.65rem .75rem;
+      border-radius:12px;
+      color:inherit
+    }
+
+    .menu a:hover,.menu a[aria-current="page"]{
+      background:hsl(160 70% 95%)
+    }
+
+    [data-theme="dark"] .menu a:hover,[data-theme="dark"] .menu a[aria-current="page"]{
+      background:hsl(210 10% 18%)
+    }
+
+    .avatar{
+      margin-left:auto;
+      width:36px;
+      height:36px;
+      border-radius:999px;
+      background:hsl(160 60% 92%);
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      color:var(--primary)
+    }
+
+
+</style>
+
+
+<aside class="sidebar">
+    <div class="brand">
+      <div class="logo"><i class="fa-solid fa-leaf"></i></div>
+      <strong>EcoVerse</strong>
+      <div class="avatar" title="User Name">UN</div>
+    </div>
+    <nav class="menu">
+      <a href="/dashboard" aria-current="page"><i>🏠</i> Dashboard Overview</a>
+      <a href="/analytics"><i>📊</i> Analytics & Reports</a>
+      <a href="/rewards"><i>🎁</i> Rewards</a>
+      <a href="#"><i>🪙</i> EcoTokens Wallet</a>
+      <a href="/impact"><i>🌱</i> Impact Tracker</a>
+      <a href="#"><i>🧠</i> AI Insights</a>
+      <a href="/settings"><i>⚙️</i> Settings</a>
+      <a href="/"><i>🚪</i> Logout</a>
+    </nav>
+  </aside>

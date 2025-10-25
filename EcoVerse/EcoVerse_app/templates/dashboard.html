@@ -1,0 +1,231 @@
+{% load static %}
+
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard | EcoVerse</title>
+  <meta name="description" content="EcoVerse Dashboard: Track waste recycled, energy generated, and carbon credits earned." />
+  <link rel="canonical" href="./dashboard.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root{
+      --primary-h:160;
+      --primary-s:100%;
+      --primary-l:33%;
+      --primary:hsl(var(--primary-h) var(--primary-s) var(--primary-l));
+      --primary-glow:hsl(160 70% 45%);
+      --bg:hsl(0 0% 99%);--text:hsl(210 15% 15%);--muted:hsl(210 10% 40%);
+      --card:#fff;
+      --radius:16px;
+      --shadow:0 10px 30px -10px hsl(var(--primary-h) var(--primary-s) / .25)
+    }
+    
+    [data-theme="dark"]{
+      --bg:hsl(210 15% 8%);
+      --text:hsl(0 0% 98%);
+      --muted:hsl(210 10% 70%);
+      --card:hsl(210 10% 12%)
+    }
+    
+    *{
+      box-sizing:border-box
+    }
+    
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      min-height:100vh;
+      display:flex
+    
+    }
+    
+    
+
+    .main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      min-width:0
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:1rem 1.25rem;
+      border-bottom:1px solid hsl(210 16% 92%)
+    }
+
+    [data-theme="dark"] .topbar{
+      border-color:hsl(210 10% 20%)
+    }
+
+    .theme{
+      border:none;
+      background:transparent;
+      color:var(--muted);
+      padding:.5rem;
+      border-radius:10px;
+      cursor:pointer
+    }
+
+    .grid{
+      display:grid;
+      gap:1rem
+    }
+
+    @media(min-width:900px){
+      .grid-4{
+        grid-template-columns:repeat(4,1fr)
+      }
+      .grid-2{grid-template-columns:2fr 1fr
+      }
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid hsl(210 16% 92%);
+      border-radius:16px;
+      padding:1rem;
+      box-shadow:var(--shadow)
+    }
+
+    [data-theme="dark"] .card{
+      border-color:hsl(210 10% 20%)
+    }
+
+    .stat{
+      display:flex;
+      align-items:center;
+      justify-content:space-between
+    }
+
+    .stat .icon{
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      background:hsl(160 60% 92%);
+      color:var(--primary);
+      display:grid;
+      place-items:center
+    }
+
+    .muted{
+      color:var(--muted)
+    }
+
+    .progress{
+      height:10px;
+      background:hsl(210 16% 92%);
+      border-radius:999px;
+      overflow:hidden
+    }
+
+    .progress>span{
+      display:block;
+      height:100%;
+      background:linear-gradient(90deg,var(--primary),var(--primary-glow))
+    }
+
+    .activity{
+      display:flex;
+      gap:.75rem;
+      padding:.75rem 0;
+      border-bottom:1px solid hsl(210 16% 92%)
+    }
+
+    .activity:last-child{
+      border:0
+    }
+
+  </style>
+</head>
+<body>
+  
+
+  {% include 'sidebar.html' %}
+
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <h1 style="margin:0;font-family:Poppins,Inter,sans-serif">Welcome back, User! 👋</h1>
+        <p class="muted" style="margin:.25rem 0 0">Here's your sustainability impact overview</p>
+      </div>
+      <button id="themeToggle" class="theme" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+    </div>
+    <main style="padding:1.25rem;">
+      <section class="grid grid-4">
+        <div class="card stat">
+          <div>
+            <div class="muted">Waste Recycled</div>
+            <div style="font-weight:700;font-size:1.25rem">48.5 kg</div>
+          </div>
+          <div class="icon"><i class="fa-solid fa-recycle"></i></div>
+        </div>
+        <div class="card stat">
+          <div>
+            <div class="muted">Energy Generated</div>
+            <div style="font-weight:700;font-size:1.25rem">124 kWh</div>
+          </div>
+          <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+        </div>
+        <div class="card stat">
+          <div>
+            <div class="muted">Carbon Credits</div>
+            <div style="font-weight:700;font-size:1.25rem">2,450</div>
+          </div>
+          <div class="icon"><i class="fa-solid fa-award"></i></div>
+        </div>
+        <div class="card stat">
+          <div>
+            <div class="muted">EcoTokens</div>
+            <div style="font-weight:700;font-size:1.25rem">3,890</div>
+          </div>
+          <div class="icon"><i class="fa-solid fa-leaf"></i></div>
+        </div>
+      </section>
+
+      <section class="grid grid-2" style="margin-top:1rem">
+        <div class="card">
+          <h2 style="margin-top:0">Weekly Collection Progress</h2>
+          <div style="display:grid;gap:1rem">
+            <div>
+              <div style="display:flex;justify-content:space-between"><strong>Plastic Waste</strong><span class="muted">15 kg / 20 kg</span></div>
+              <div class="progress"><span style="width:75%"></span></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between"><strong>Organic Waste</strong><span class="muted">22 kg / 25 kg</span></div>
+              <div class="progress"><span style="width:88%"></span></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between"><strong>Metal & Glass</strong><span class="muted">8 kg / 15 kg</span></div>
+              <div class="progress"><span style="width:53%"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h2 style="margin-top:0">Recent Activities</h2>
+          <div>
+            <div class="activity"><div style="width:8px;height:8px;border-radius:999px;background:var(--primary);margin-top:8px"></div><div style="flex:1"><div>Waste Collection Completed</div><div class="muted" style="font-size:.9rem">2 hours ago</div></div><strong class="muted">+45</strong></div>
+            <div class="activity"><div style="width:8px;height:8px;border-radius:999px;background:var(--primary);margin-top:8px"></div><div style="flex:1"><div>Energy Conversion</div><div class="muted" style="font-size:.9rem">5 hours ago</div></div><strong class="muted">+30</strong></div>
+            <div class="activity"><div style="width:8px;height:8px;border-radius:999px;background:var(--primary);margin-top:8px"></div><div style="flex:1"><div>Weekly Goal Achieved</div><div class="muted" style="font-size:.9rem">1 day ago</div></div><strong class="muted">+100</strong></div>
+            <div class="activity"><div style="width:8px;height:8px;border-radius:999px;background:var(--primary);margin-top:8px"></div><div style="flex:1"><div>Reward Redeemed: LPG Discount</div><div class="muted" style="font-size:.9rem">2 days ago</div></div><strong class="muted">-500</strong></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const t=document.getElementById('themeToggle');
+    t.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark';localStorage.setItem('theme',document.documentElement.dataset.theme||'light')});
+    if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark';
+  </script>
+</body>
+</html>

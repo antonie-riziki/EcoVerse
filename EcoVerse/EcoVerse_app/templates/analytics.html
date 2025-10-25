@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analytics | EcoVerse</title>
+  <meta name="description" content="Analytics & Reports: Visualize CO₂ saved, waste breakdown, and energy generated." />
+  <link rel="canonical" href="./analytics.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--primary-h:160;--primary-s:100%;--primary-l:33%;--primary:hsl(var(--primary-h) var(--primary-s) var(--primary-l));--primary-glow:hsl(160 70% 45%);--bg:hsl(0 0% 99%);--text:hsl(210 15% 15%);--muted:hsl(210 10% 40%);--card:#fff;--shadow:0 10px 30px -10px hsl(var(--primary-h) var(--primary-s) / .25)}
+    [data-theme="dark"]{--bg:hsl(210 15% 8%);--text:hsl(0 0% 98%);--muted:hsl(210 10% 70%);--card:hsl(210 10% 12%)}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;min-height:100vh;display:flex}
+    .sidebar{width:260px;min-height:100vh;border-right:1px solid hsl(210 16% 92%);background:rgba(255,255,255,.6);backdrop-filter:saturate(180%) blur(8px);position:sticky;top:0}
+    [data-theme="dark"] .sidebar{background:rgba(20,24,28,.5);border-color:hsl(210 10% 20%)}
+    .brand{display:flex;align-items:center;gap:.6rem;padding:1rem}
+    .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--primary-glow));display:grid;place-items:center;color:#fff;box-shadow:var(--shadow)}
+    .menu{padding:.5rem}
+    .menu a{display:flex;align-items:center;gap:.75rem;padding:.65rem .75rem;border-radius:12px;color:inherit}
+    .menu a:hover,.menu a[aria-current="page"]{background:hsl(160 70% 95%)}
+    [data-theme="dark"] .menu a:hover,[data-theme="dark"] .menu a[aria-current="page"]{background:hsl(210 10% 18%)}
+    .main{flex:1;display:flex;flex-direction:column;min-width:0}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid hsl(210 16% 92%)}
+    .muted{color:var(--muted)}
+    .card{background:var(--card);border:1px solid hsl(210 16% 92%);border-radius:16px;padding:1rem;box-shadow:var(--shadow)}
+    .grid{display:grid;gap:1rem}
+    @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}}
+    .bar{height:10px;background:hsl(210 16% 92%);border-radius:999px;overflow:hidden}
+    .bar>span{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-glow))}
+    .btn{display:inline-flex;align-items:center;gap:.5rem;border:0;border-radius:10px;padding:.5rem .8rem;background:linear-gradient(135deg,var(--primary),var(--primary-glow));color:#fff;cursor:pointer}
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="logo">🌿</div><strong>EcoVerse</strong></div>
+    <nav class="menu">
+      <a href="./dashboard.html"><i>🏠</i> Dashboard Overview</a>
+      <a href="./analytics.html" aria-current="page"><i>📊</i> Analytics & Reports</a>
+      <a href="./rewards.html"><i>🎁</i> Rewards</a>
+      <a href="#"><i>🪙</i> EcoTokens Wallet</a>
+      <a href="./impact.html"><i>🌱</i> Impact Tracker</a>
+      <a href="#"><i>🧠</i> AI Insights</a>
+      <a href="./settings.html"><i>⚙️</i> Settings</a>
+      <a href="./landingpage.html"><i>🚪</i> Logout</a>
+    </nav>
+  </aside>
+  <div class="main">
+    <div class="topbar">
+      <div>
+        <h1 style="margin:0;font-family:Poppins,Inter,sans-serif">Analytics & Reports 📊</h1>
+        <p class="muted" style="margin:.25rem 0 0">Track your environmental impact over time</p>
+      </div>
+      <button id="themeToggle" class="btn" aria-label="Toggle theme">🌓</button>
+    </div>
+
+    <main style="padding:1.25rem;">
+      <section class="grid grid-3">
+        <div class="card">
+          <div class="muted">Total CO₂ Saved</div>
+          <div style="font-weight:700;font-size:1.5rem">1,580 kg</div>
+          <div class="muted" style="font-size:.9rem">Equivalent to 32 trees planted</div>
+        </div>
+        <div class="card">
+          <div class="muted">Energy Generated</div>
+          <div style="font-weight:700;font-size:1.5rem">815 kWh</div>
+          <div class="muted" style="font-size:.9rem">Powers 2.5 homes for a month</div>
+        </div>
+        <div class="card">
+          <div class="muted">Waste Diverted</div>
+          <div style="font-weight:700;font-size:1.5rem">248.5 kg</div>
+          <div class="muted" style="font-size:.9rem">Kept out of landfills</div>
+        </div>
+      </section>
+
+      <section class="grid grid-2" style="margin-top:1rem">
+        <div class="card">
+          <h2 style="margin-top:0">Waste Type Breakdown</h2>
+          <div style="display:grid;gap:1rem">
+            <div><div style="display:flex;justify-content:space-between"><strong>Plastic</strong><span class="muted">17 kg (35%)</span></div><div class="bar"><span style="width:35%"></span></div></div>
+            <div><div style="display:flex;justify-content:space-between"><strong>Organic</strong><span class="muted">22 kg (45%)</span></div><div class="bar"><span style="width:45%"></span></div></div>
+            <div><div style="display:flex;justify-content:space-between"><strong>Metal</strong><span class="muted">5 kg (10%)</span></div><div class="bar"><span style="width:10%"></span></div></div>
+            <div><div style="display:flex;justify-content:space-between"><strong>Glass</strong><span class="muted">4 kg (10%)</span></div><div class="bar"><span style="width:10%"></span></div></div>
+          </div>
+        </div>
+        <div class="card" style="background:linear-gradient(135deg,hsl(160 70% 96%),#fff)">
+          <h2 style="margin-top:0">AI Insights 🧠</h2>
+          <div class="card" style="margin:0 0 .75rem 0">
+            <strong class="muted" style="color:var(--primary)">Great Progress!</strong>
+            <p class="muted">You've increased your waste collection by 22% this month. Keep it up!</p>
+          </div>
+          <div class="card" style="margin:0 0 .75rem 0">
+            <strong class="muted" style="color:var(--primary)">Optimization Tip</strong>
+            <p class="muted">Separate organic waste earlier in the week to maximize energy conversion.</p>
+          </div>
+          <div class="card">
+            <strong class="muted" style="color:var(--primary)">Milestone Alert</strong>
+            <p class="muted">You're just 150 tokens away from unlocking the Solar Panel Discount reward!</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" style="margin-top:1rem">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap">
+          <h2 style="margin:0">6-Month Trend Analysis</h2>
+          <button class="btn">Download Report (PDF)</button>
+        </div>
+        <div style="display:grid;gap:.75rem;margin-top:1rem">
+          <div style="display:flex;gap:1rem;align-items:center"><strong style="width:3rem">Jan</strong><div class="bar" style="flex:1"><span style="width:51%"></span></div><div class="bar" style="flex:1"><span style="width:54%"></span></div></div>
+          <div style="display:flex;gap:1rem;align-items:center"><strong style="width:3rem">Feb</strong><div class="bar" style="flex:1"><span style="width:63%"></span></div><div class="bar" style="flex:1"><span style="width:63%"></span></div></div>
+          <div style="display:flex;gap:1rem;align-items:center"><strong style="width:3rem">Mar</strong><div class="bar" style="flex:1"><span style="width:71%"></span></div><div class="bar" style="flex:1"><span style="width:74%"></span></div></div>
+          <div style="display:flex;gap:1rem;align-items:center"><strong style="width:3rem">Apr</strong><div class="bar" style="flex:1"><span style="width:80%"></span></div><div class="bar" style="flex:1"><span style="width:83%"></span></div></div>
+          <div style="display:flex;gap:1rem;align-items:center"><strong style="width:3rem">May</strong><div class="bar" style="flex:1"><span style="width:91%"></span></div><div class="bar" style="flex:1"><span style="width:91%"></span></div></div>
+          <div style="display:flex;gap:1rem;align-items:center"><strong style="width:3rem">Jun</strong><div class="bar" style="flex:1"><span style="width:100%"></span></div><div class="bar" style="flex:1"><span style="width:100%"></span></div></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const t=document.getElementById('themeToggle');
+    t.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark';localStorage.setItem('theme',document.documentElement.dataset.theme||'light')});
+    if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark';
+  </script>
+</body>
+</html>
