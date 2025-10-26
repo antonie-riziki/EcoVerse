@@ -1,0 +1,80 @@
+
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Community | EcoVerse</title>
+  <meta name="description" content="Compete in monthly challenges, view achievements, and join community teams in EcoVerse." />
+  <link rel="canonical" href="/community.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="/assets/ecoverse.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+<body>
+  <div class="app">
+    {% include 'sidebar.html' %}
+
+    <section class="main">
+      <header class="topbar">
+        <button id="sidebarToggle" class="btn btn-ghost" aria-label="Toggle sidebar"><i class="fa-solid fa-bars"></i></button>
+        <div class="user"><div class="avatar">AG</div><div><strong>Ava Green</strong><div class="muted" style="font-size:.85rem">Community</div></div></div>
+      </header>
+
+      <main class="container section">
+        <h1>Community & Challenges</h1>
+        <article class="card mt-2" role="banner" aria-label="Monthly challenge">
+          <div class="kpi">
+            <div>
+              <h3>Monthly Challenge</h3>
+              <p class="muted">Recycle 20kg in October to earn <strong>500 EcoTokens</strong>.</p>
+            </div>
+            <a class="btn btn-primary" href="#">Join Challenge</a>
+          </div>
+        </article>
+
+        <div class="grid grid-2 mt-4">
+          <article class="card">
+            <h3>Leaderboard</h3>
+            <table class="table mt-2">
+              <thead><tr><th>Team</th><th>Points</th></tr></thead>
+              <tbody>
+                <tr><td>Green Guardians</td><td>3,420</td></tr>
+                <tr><td>Eco Innovators</td><td>3,120</td></tr>
+                <tr><td>Zero Waste Crew</td><td>2,980</td></tr>
+              </tbody>
+            </table>
+          </article>
+          <article class="card">
+            <h3>Discussion Feed</h3>
+            <div class="mt-2">
+              <p><strong>Ava</strong> — Tips on sorting soft plastics? <span class="badge">12 replies</span></p>
+              <p><strong>Sam</strong> — Shared composting tutorial. <span class="badge">8 replies</span></p>
+              <p><strong>Li</strong> — Organizing a weekend cleanup. <span class="badge">5 replies</span></p>
+            </div>
+          </article>
+        </div>
+
+        <div class="card mt-4">
+          <div class="kpi">
+            <div>
+              <h3>Join a Team</h3>
+              <p class="muted">Participate in local or university groups.</p>
+            </div>
+            <a class="btn" href="#">Browse Teams</a>
+          </div>
+        </div>
+      </main>
+    </section>
+  </div>
+
+  <script src="/assets/ecoverse.js"></script>
+</body>
+</html>

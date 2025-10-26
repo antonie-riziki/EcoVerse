@@ -1,3 +1,6 @@
+
+{% load static %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,48 +12,365 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
   <style>
-    :root{--primary-h:160;--primary-s:100%;--primary-l:33%;--primary:hsl(var(--primary-h) var(--primary-s) var(--primary-l));--primary-glow:hsl(160 70% 45%);--bg:hsl(0 0% 99%);--text:hsl(210 15% 15%);--muted:hsl(210 10% 40%);--card:#fff;--shadow:0 10px 30px -10px hsl(var(--primary-h) var(--primary-s) / .25)}
-    [data-theme="dark"]{--bg:hsl(210 15% 8%);--text:hsl(0 0% 98%);--muted:hsl(210 10% 70%);--card:hsl(210 10% 12%)}
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;min-height:100vh;display:flex}
-    .sidebar{width:260px;min-height:100vh;border-right:1px solid hsl(210 16% 92%);background:rgba(255,255,255,.6);backdrop-filter:saturate(180%) blur(8px);position:sticky;top:0}
-    [data-theme="dark"] .sidebar{background:rgba(20,24,28,.5);border-color:hsl(210 10% 20%)}
-    .brand{display:flex;align-items:center;gap:.6rem;padding:1rem}
-    .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--primary),var(--primary-glow));display:grid;place-items:center;color:#fff;box-shadow:var(--shadow)}
-    .menu{padding:.5rem}
-    .menu a{display:flex;align-items:center;gap:.75rem;padding:.65rem .75rem;border-radius:12px;color:inherit}
-    .menu a:hover,.menu a[aria-current="page"]{background:hsl(160 70% 95%)}
-    [data-theme="dark"] .menu a:hover,[data-theme="dark"] .menu a[aria-current="page"]{background:hsl(210 10% 18%)}
-    .main{flex:1;display:flex;flex-direction:column;min-width:0}
-    .topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid hsl(210 16% 92%)}
-    .muted{color:var(--muted)}
-    .card{background:var(--card);border:1px solid hsl(210 16% 92%);border-radius:16px;padding:1rem;box-shadow:var(--shadow)}
-    .grid{display:grid;gap:1rem}
-    @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:0;border-radius:12px;padding:.6rem .9rem;background:linear-gradient(135deg,var(--primary),var(--primary-glow));color:#fff;cursor:pointer}
-    .balance{display:flex;align-items:center;justify-content:space-between}
-    .token{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:2rem;color:#fff}
+    :root{
+      --primary-h:160;
+      --primary-s:100%;
+      --primary-l:33%;
+      --primary:hsl(var(--primary-h) var(--primary-s) var(--primary-l));
+      --primary-glow:hsl(160 70% 45%);
+      --bg:hsl(0 0% 99%);
+      --text:hsl(210 15% 15%);
+      --muted:hsl(210 10% 40%);
+      --card:#fff;
+      --shadow:0 10px 30px -10px hsl(var(--primary-h) var(--primary-s) / .25)
+    }
+
+    [data-theme="dark"]{
+      --bg:hsl(210 15% 8%);
+      --text:hsl(0 0% 98%);
+      --muted:hsl(210 10% 70%);
+      --card:hsl(210 10% 12%)
+    }
+
+    *{
+      box-sizing:border-box
+    }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      min-height:100vh;
+      display:flex
+    }
+
+    .sidebar{
+      width:260px;
+      min-height:100vh;
+      border-right:1px solid hsl(210 16% 92%);
+      background:rgba(255,255,255,.6);
+      backdrop-filter:saturate(180%) blur(8px);
+      position:sticky;
+      top:0
+    }
+
+    [data-theme="dark"] .sidebar{
+      background:rgba(20,24,28,.5);
+      border-color:hsl(210 10% 20%)
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+      padding:1rem
+    }
+
+    .logo{
+      width:40px;
+      height:40px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--primary),var(--primary-glow));
+      display:grid;
+      place-items:center;
+      color:#fff;
+      box-shadow:var(--shadow)
+    }
+
+    .menu{
+      padding:.5rem
+    }
+
+    .menu a{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      padding:.65rem .75rem;
+      border-radius:12px;
+      color:inherit
+    }
+
+    .menu a:hover,.menu a[aria-current="page"]{
+      background:hsl(160 70% 95%)
+    }
+
+    [data-theme="dark"] .menu a:hover,[data-theme="dark"] .menu a[aria-current="page"]{
+      background:hsl(210 10% 18%)
+    }
+
+    .main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      min-width:0
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:1rem 1.25rem;
+      border-bottom:1px solid hsl(210 16% 92%)
+    }
+
+    .muted{
+      color:var(--muted)
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid hsl(210 16% 92%);
+      border-radius:16px;
+      padding:1rem;
+      box-shadow:var(--shadow)
+    }
+
+    .grid{
+      display:grid;
+      gap:1rem
+    }
+
+    @media(min-width:900px){
+      .grid-3
+      {
+        grid-template-columns:repeat(3,1fr)
+      }
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.5rem;
+      border:0;
+      border-radius:12px;
+      padding:.6rem .9rem;
+      background:linear-gradient(135deg,var(--primary),var(--primary-glow));
+      color:#fff;
+      cursor:pointer
+    }
+
+    .balance{
+      display:flex;
+      align-items:center;
+      justify-content:space-between
+    }
+
+    .token{
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      font-weight:700;
+      font-size:2rem;
+      color:#fff
+    }
+
+
+    .card { background: #ffffff; border-radius: 12px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .card-title { font-size: 1.25rem; font-weight: 600; }
+
+
+    /* Filter Section */
+    .filters {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .filter-group label {
+        font-size: 0.875rem;
+        color: #6b7280;
+        font-weight: 500;
+    }
+    
+    .filter-group select, .filter-group input {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        font-size: 0.95rem;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    th {
+        text-align: left;
+        padding: 0.75rem;
+        border-bottom: 2px solid #e5e7eb;
+        color: #6b7280;
+        font-weight: 600;
+        font-size: 0.875rem;
+    }
+    
+    td {
+        padding: 1rem 0.75rem;
+        border-bottom: 1px solid #f3f4f6;
+    }
+    
+    .badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+    
+    .badge.success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+    .badge.pending { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+    
+    .action-icons {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .action-icons button {
+        background: none;
+        border: none;
+        color: var(--primary);
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+    
+    .action-icons button:hover {
+        background: rgba(5, 109, 95, 0.1);
+    }
+    
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .modal.active { display: flex; }
+    
+    .modal-content {
+        background: var(--card);
+        border-radius: 12px;
+        padding: 2rem;
+        max-width: 600px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #6b7280;
+    }
+    
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+    
+    .form-group input, .form-group textarea, .form-group select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+    
+    .form-group textarea {
+        resize: vertical;
+        font-family: inherit;
+    }
+    
+    .char-count {
+        text-align: right;
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+    }
+    
+    .template-item {
+        padding: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .template-item:hover {
+        border-color: var(--primary);
+        background: rgba(5, 109, 95, 0.05);
+    }
+    
+    .template-item h4 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .template-item p {
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+    
+    @media (max-width: 1024px) {
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .sidebar { transform: translateX(-100%); }
+        .main-content { margin-left: 0; }
+    }
+        
+
   </style>
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="brand"><div class="logo">🌿</div><strong>EcoVerse</strong></div>
-    <nav class="menu">
-      <a href="./dashboard.html"><i>🏠</i> Dashboard Overview</a>
-      <a href="./analytics.html"><i>📊</i> Analytics & Reports</a>
-      <a href="./rewards.html" aria-current="page"><i>🎁</i> Rewards</a>
-      <a href="#"><i>🪙</i> EcoTokens Wallet</a>
-      <a href="./impact.html"><i>🌱</i> Impact Tracker</a>
-      <a href="#"><i>🧠</i> AI Insights</a>
-      <a href="./settings.html"><i>⚙️</i> Settings</a>
-      <a href="./landingpage.html"><i>🚪</i> Logout</a>
-    </nav>
-  </aside>
+
+  {% include 'sidebar.html' %}
+
   <div class="main">
     <div class="topbar">
       <div>
-        <h1 style="margin:0;font-family:Poppins,Inter,sans-serif">Rewards Catalog 🎁</h1>
+        <h1 style="margin:0;font-family:Poppins,Inter,sans-serif">Rewards Catalog</h1>
         <p class="muted" style="margin:.25rem 0 0">Redeem your EcoTokens for amazing rewards</p>
       </div>
       <button id="themeToggle" class="btn" style="padding:.5rem .7rem" aria-label="Toggle theme">🌓</button>
@@ -70,8 +390,8 @@
       <section class="grid grid-3">
         <!-- Reward Cards -->
         <div class="card">
-          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">🔥</div>
-          <h3>LPG Discount</h3>
+          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">🔥</div><br>
+          <h5>LPG Discount</h5>
           <p class="muted">20% off on your next LPG cylinder</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
             <strong>🪙 500</strong>
@@ -79,8 +399,8 @@
           </div>
         </div>
         <div class="card">
-          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">⚡</div>
-          <h3>Solar Panel Discount</h3>
+          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">⚡</div><br>
+          <h5>Solar Panel Discount</h5>
           <p class="muted">Get $100 off solar panel installation</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
             <strong>🪙 2000</strong>
@@ -88,8 +408,8 @@
           </div>
         </div>
         <div class="card">
-          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">🛍️</div>
-          <h3>Eco Shopping Bag</h3>
+          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">🛍️</div><br>
+          <h5>Eco Shopping Bag</h5>
           <p class="muted">Premium reusable shopping bag set</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
             <strong>🪙 300</strong>
@@ -97,8 +417,8 @@
           </div>
         </div>
         <div class="card">
-          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">🌲</div>
-          <h3>Plant 10 Trees</h3>
+          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">🌲</div><br>
+          <h5>Plant 10 Trees</h5>
           <p class="muted">We'll plant 10 trees in your name</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
             <strong>🪙 1000</strong>
@@ -106,27 +426,171 @@
           </div>
         </div>
         <div class="card">
-          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">🎁</div>
-          <h3>Eco-Gadget Bundle</h3>
+          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">🎁</div><br>
+          <h5>Eco-Gadget Bundle</h5>
           <p class="muted">Smart home energy monitoring kit</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
-            <strong>🪙 1500</strong>
+            <strong> 1500</strong>
             <button class="btn">Redeem Now</button>
           </div>
         </div>
         <div class="card">
-          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center">🪙</div>
-          <h3>Carbon Offset Credits</h3>
+          <div style="width:56px;height:56px;border-radius:14px;background:hsl(160 60% 92%);display:grid;place-items:center"></div><br>
+          <h5>Carbon Offset Credits</h5>
           <p class="muted">1 ton CO₂ offset certification</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
-            <strong>🪙 800</strong>
+            <strong> 800</strong>
             <button class="btn">Redeem Now</button>
           </div>
         </div>
       </section>
+
+      <!-- Impact -->
+      <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Performance Metrics (Last 7 Days)</h3>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div style="padding: 1rem; border: 1px solid #e5e7eb; border-radius: 8px;">
+                <div style="color: #6b7280; font-size: 0.875rem;">Total Sessions</div>
+                <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">2,819</div>
+                <div style="color: #10b981; font-size: 0.875rem;">+12% vs last week</div>
+            </div>
+            <div style="padding: 1rem; border: 1px solid #e5e7eb; border-radius: 8px;">
+                <div style="color: #6b7280; font-size: 0.875rem;">Avg Duration</div>
+                <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">45s</div>
+                <div style="color: #6b7280; font-size: 0.875rem;">Per session</div>
+            </div>
+            <div style="padding: 1rem; border: 1px solid #e5e7eb; border-radius: 8px;">
+                <div style="color: #6b7280; font-size: 0.875rem;">Completion Rate</div>
+                <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">87%</div>
+                <div style="color: #10b981; font-size: 0.875rem;">+5% improvement</div>
+            </div>
+            <div style="padding: 1rem; border: 1px solid #e5e7eb; border-radius: 8px;">
+                <div style="color: #6b7280; font-size: 0.875rem;">Peak Hour</div>
+                <div style="font-size: 2rem; font-weight: 700; color: var(--primary);">2 PM</div>
+                <div style="color: #6b7280; font-size: 0.875rem;">456 sessions</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Set Reminder / Target -->
+    <div class="filters">
+      <div class="filter-group">
+          <label>Status</label>
+          <select>
+              <option>All Campaigns</option>
+              <option>Delivered</option>
+              <option>Pending</option>
+              <option>Failed</option>
+          </select>
+      </div>
+      <div class="filter-group">
+          <label>Date Range</label>
+          <input type="date">
+      </div>
+      <div class="filter-group">
+          <label>&nbsp;</label>
+          <button class="btn btn-primary" onclick="openModal()">
+              <i class="fas fa-plus"></i> Create SMS Campaign
+          </button>
+      </div>
+  </div>
+
+  <div class="content-grid">
+      <div class="card">
+          <div class="card-header">
+              <h3 class="card-title">SMS Campaigns</h3>
+          </div>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Recipients</th>
+                      <th>Sent/Delivered</th>
+                      <th>Cost (Ksh)</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- Sample campaign 1 - data would come from PayHero API -->
+                  <tr>
+                      <td><strong>New Year Promo</strong></td>
+                      <td>2,450</td>
+                      <td>2,450 / 2,308 (94%)</td>
+                      <td>3,450</td>
+                      <td><span class="badge success">Delivered</span></td>
+                      <td>
+                          <div class="action-icons">
+                              <button title="View details" onclick="alert('Campaign details modal')"><i class="fas fa-eye"></i></button>
+                              <button title="Download report" onclick="downloadReport('new-year')"><i class="fas fa-download"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <!-- Sample campaign 2 -->
+                  <tr>
+                      <td><strong>Payment Reminder</strong></td>
+                      <td>856</td>
+                      <td>856 / 812 (95%)</td>
+                      <td>1,205</td>
+                      <td><span class="badge success">Delivered</span></td>
+                      <td>
+                          <div class="action-icons">
+                              <button title="View details"><i class="fas fa-eye"></i></button>
+                              <button title="Download report" onclick="downloadReport('payment-reminder')"><i class="fas fa-download"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+                  <!-- Sample campaign 3 -->
+                  <tr>
+                      <td><strong>Order Confirmation</strong></td>
+                      <td>345</td>
+                      <td>120 / 115 (96%)</td>
+                      <td>485</td>
+                      <td><span class="badge pending">In Progress</span></td>
+                      <td>
+                          <div class="action-icons">
+                              <button title="View details"><i class="fas fa-eye"></i></button>
+                              <button title="Download report"><i class="fas fa-download"></i></button>
+                          </div>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+
+      <div class="card">
+          <div class="card-header">
+              <h3 class="card-title">SMS Templates</h3>
+          </div>
+          <div style="margin-bottom: 1rem;">
+              <!-- Template 1 -->
+              <div class="template-item" onclick="useTemplate('payment')">
+                  <h4>Payment Confirmation</h4>
+                  <p>Your payment of Ksh {{amount}} has been received. Ref: {{reference}}. Thank you!</p>
+              </div>
+              <!-- Template 2 -->
+              <div class="template-item" onclick="useTemplate('order')">
+                  <h4>Order Update</h4>
+                  <p>Hi {{name}}, your order #{{order_id}} is being processed and will be delivered by {{date}}.</p>
+              </div>
+              <!-- Template 3 -->
+              <div class="template-item" onclick="useTemplate('otp')">
+                  <h4>Verification Code</h4>
+                  <p>Your verification code is {{code}}. Valid for 5 minutes. Do not share.</p>
+              </div>
+          </div>
+          <button class="btn btn-accent" style="width: 100%;">
+              <i class="fas fa-plus"></i> Create New Template
+          </button>
+      </div>
+  </div>
     </main>
   </div>
   <script>
+
+
     const t=document.getElementById('themeToggle');
     t.addEventListener('click',()=>{document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'':'dark';localStorage.setItem('theme',document.documentElement.dataset.theme||'light')});
     if(localStorage.getItem('theme')==='dark')document.documentElement.dataset.theme='dark';

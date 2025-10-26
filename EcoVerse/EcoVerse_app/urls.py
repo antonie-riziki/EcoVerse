@@ -12,5 +12,8 @@ urlpatterns = [
     path('analytics', views.analytics, name="analytics"),
     path('impact', views.impact, name="impact"),
     path('rewards', views.rewards, name="reward"),
+    path('nearby', views.nearby, name="nearby"),
+    path('chatbot-response/', views.chatbot_response, name='chatbot_response'),
+
 
 ]
