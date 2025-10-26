@@ -223,6 +223,10 @@ def nearby(request):
     return render(request, 'nearby.html')
 
 
+def community(request):
+    return render(request, 'community.html')
+
+
 
 @csrf_exempt
 def chatbot_response(request):

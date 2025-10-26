@@ -13,6 +13,7 @@ urlpatterns = [
     path('impact', views.impact, name="impact"),
     path('rewards', views.rewards, name="reward"),
     path('nearby', views.nearby, name="nearby"),
+    path('community', views.community, name="community"),
     path('chatbot-response/', views.chatbot_response, name='chatbot_response'),
 
 
