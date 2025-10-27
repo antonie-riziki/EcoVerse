@@ -22,13 +22,12 @@
       --primary-l:33%;
       --primary:hsl(var(--primary-h) var(--primary-s) var(--primary-l));
       --primary-glow:hsl(160 70% 45%);
-      --bg:hsl(0 0% 99%);
-      --text:hsl(210 15% 15%);
-      --muted:hsl(210 10% 40%);
+      --bg:hsl(0 0% 99%);--text:hsl(210 15% 15%);--muted:hsl(210 10% 40%);
       --card:#fff;
+      --radius:16px;
       --shadow:0 10px 30px -10px hsl(var(--primary-h) var(--primary-s) / .25)
     }
-
+    
     [data-theme="dark"]{
       --bg:hsl(210 15% 8%);
       --text:hsl(0 0% 98%);
@@ -49,60 +48,7 @@
       display:flex
     }
 
-    .sidebar{
-      width:260px;
-      min-height:100vh;
-      border-right:1px solid hsl(210 16% 92%);
-      background:rgba(255,255,255,.6);
-      backdrop-filter:saturate(180%) blur(8px);
-      position:sticky;
-      top:0
-    }
-
-    [data-theme="dark"] .sidebar{
-      background:rgba(20,24,28,.5);
-      border-color:hsl(210 10% 20%)
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:.6rem;
-      padding:1rem
-    }
-
-    .logo{
-      width:40px;
-      height:40px;
-      border-radius:10px;
-      background:linear-gradient(135deg,var(--primary),var(--primary-glow));
-      display:grid;
-      place-items:center;
-      color:#fff;
-      box-shadow:var(--shadow)
-    }
-
-    .menu{
-      padding:.5rem
-    }
-
-    .menu a{
-      display:flex;
-      align-items:center;
-      gap:.75rem;
-      padding:.65rem .75rem;
-      border-radius:12px;
-      color:inherit
-    }
-
-    .menu a:hover,.menu a[aria-current="page"]{
-      background:hsl(160 70% 95%)
-    }
-
-    [data-theme="dark"] .menu a:hover,[data-theme="dark"] .menu a[aria-current="page"]{
-      background:hsl(210 10% 18%)
-    }
-
+    
     .main{
       flex:1;
       display:flex;
@@ -141,6 +87,7 @@
         grid-template-columns:repeat(3,1fr)
       }
     }
+    
     .btn{
       display:inline-flex;
       align-items:center;
@@ -370,18 +317,19 @@
   <div class="main">
     <div class="topbar">
       <div>
-        <h1 style="margin:0;font-family:Poppins,Inter,sans-serif">Rewards Catalog</h1>
+        <h1 style="margin:0;font-family:Poppins,Inter,sans-serif">Rewards</h1>
         <p class="muted" style="margin:.25rem 0 0">Redeem your EcoTokens for amazing rewards</p>
       </div>
-      <button id="themeToggle" class="btn" style="padding:.5rem .7rem" aria-label="Toggle theme">🌓</button>
+      <button id="themeToggle" class="theme" aria-label="Toggle theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
     </div>
+    <main style="padding:1.25rem;">
 
     <main style="padding:1.25rem;">
       <section class="card" style="background:linear-gradient(135deg,var(--primary),var(--primary-glow));color:#fff;margin-bottom:1rem">
         <div class="balance">
           <div>
             <div class="muted" style="color:#fff;opacity:.9">Your EcoToken Balance</div>
-            <div class="token">🪙 <span id="tokenCount">0</span></div>
+            <div class="token"><i class="fas fa-gift"></i><span id="tokenCount">5000</span></div>
           </div>
           <div class="muted" style="color:#fff">Keep collecting to unlock more rewards!</div>
         </div>
@@ -389,13 +337,12 @@
 
       <section class="grid grid-3">
         <!-- Reward Cards -->
-        <div class="card">
-            <img src="https://www.africa50.com/fileadmin/_processed_/1/3/csm_BasiGo_Buses_102412944a.jpeg" alt="LPG Icon" style="width:100%;height:160px;object-fit:cover;border-top-left-radius:14px;border-top-right-radius:14px;">
-          
+        <div class="card" style="border-radius:14px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.1);">
+            <img src="https://www.africa50.com/fileadmin/_processed_/1/3/csm_BasiGo_Buses_102412944a.jpeg" alt="LPG Icon" style="width:100%;height:180px;object-fit:cover;display:block;margin:0;padding:0;border-top-left-radius:14px;border-top-right-radius:14px;">
           <h5>Basi Go Discount</h5>
           <p class="muted">20% off on your next LPG cylinder</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
-            <strong>🪙 500</strong>
+            <strong><i class="fas fa-coins"></i> 500</strong>
             <button class="btn">Redeem Now</button>
           </div>
         </div>
@@ -405,7 +352,7 @@
           <h5>Solar Panel Discount</h5>
           <p class="muted">Get $100 off solar panel installation</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
-            <strong>🪙 2000</strong>
+            <strong><i class="fas fa-coins"></i> 2000</strong>
             <button class="btn">Redeem Now</button>
           </div>
         </div>
@@ -414,7 +361,7 @@
           <h5>Pay Go</h5>
           <p class="muted">Premium reusable shopping bag set</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
-            <strong>🪙 300</strong>
+            <strong><i class="fas fa-coins"></i> 300</strong>
             <button class="btn">Redeem Now</button>
           </div>
         </div>
@@ -424,7 +371,7 @@
           <h5>Koko Fuel</h5>
           <p class="muted">We'll plant 10 trees in your name</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
-            <strong>🪙 1000</strong>
+            <strong><i class="fas fa-coins"></i> 1000</strong>
             <button class="btn">Redeem Now</button>
           </div>
         </div>
@@ -434,7 +381,7 @@
           <h5>Jikokoa</h5>
           <p class="muted">Smart home energy monitoring kit</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
-            <strong> 1500</strong>
+            <strong><i class="fas fa-coins"></i> 1500</strong>
             <button class="btn">Redeem Now</button>
           </div>
         </div>
@@ -444,7 +391,7 @@
           <h5>SunKing</h5>
           <p class="muted">1 ton CO₂ offset certification</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem">
-            <strong> 800</strong>
+            <strong><i class="fas fa-coins"></i> 800</strong>
             <button class="btn">Redeem Now</button>
           </div>
         </div>

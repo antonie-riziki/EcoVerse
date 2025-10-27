@@ -400,7 +400,7 @@
           </div>
       </div>
 
-      <section class="grid grid-2" style="margin-top:1rem">
+      <!-- <section class="grid grid-2" style="margin-top:1rem">
         <div class="card">
           <h2 style="margin-top:0">Weekly Collection Progress</h2>
           <div style="display:grid;gap:1rem">
@@ -427,7 +427,7 @@
             <div class="activity"><div style="width:8px;height:8px;border-radius:999px;background:var(--primary);margin-top:8px"></div><div style="flex:1"><div>Reward Redeemed: LPG Discount</div><div class="muted" style="font-size:.9rem">2 days ago</div></div><strong class="muted">-500</strong></div>
           </div>
         </div>
-      </section>
+      </section> -->
 
       
 
@@ -441,34 +441,58 @@
                   <tr>
                       <th>Date</th>
                       <th>Action</th>
-                      <th>Channel</th>
-                      <th>Amount</th>
+                      <th>Category</th>
+                      <th>Tokens</th>
                       <th>Status</th>
                   </tr>
               </thead>
               <tbody>
+                <tr>
+                      <td>Oct 20, 2025 04:45 PM</td>
+                      <td>Redeemed Rewards - Koko Fuel</td>
+                      <td>Token Redemption</td>
+                      <td><div class="stat-change" style="color: red">
+                          <i class="fas fa-arrow-down" ></i> -100 
+                      </div></td>
+                      <td><span class="badge warning">In Progress</span></td>
+                  </tr>
                   <!-- Sample row 1 - data would be dynamically loaded -->
                   <tr>
-                      <td>Jan 15, 2025 10:30 AM</td>
-                      <td>Bulk SMS Campaign - "New Year Promo"</td>
-                      <td>SMS</td>
-                      <td>Ksh 3,450</td>
+                      <td>Oct 15, 2025 10:30 AM</td>
+                      <td>Dropped off 8kg organic waste at Dandora Hub</td>
+                      <td>Waste Drop-off</td>
+                      <td><div class="stat-change">
+                          <i class="fas fa-arrow-up"></i> +1000
+                      </div></td>
                       <td><span class="badge success">Delivered</span></td>
                   </tr>
                   <!-- Sample row 2 -->
                   <tr>
-                      <td>Jan 15, 2025 09:15 AM</td>
-                      <td>Airtime Disbursement - "Survey Rewards"</td>
-                      <td>Airtime</td>
-                      <td>Ksh 5,000</td>
+                      <td>Oct 15, 2025 12:15 AM</td>
+                      <td>Participated in “Green Karen Drive”</td>
+                      <td>Tree Planting</td>
+                      <td><div class="stat-change">
+                          <i class="fas fa-arrow-up"></i> +150 
+                      </div></td>
                       <td><span class="badge success">Completed</span></td>
                   </tr>
                   <!-- Sample row 3 -->
                   <tr>
-                      <td>Jan 14, 2025 04:45 PM</td>
-                      <td>Voice Campaign - "Payment Reminder"</td>
-                      <td>Voice</td>
-                      <td>Ksh 2,100</td>
+                      <td>Oct 10, 2025 06:45 AM</td>
+                      <td>Sold 0.25 tons CO₂ credits to Sun King</td>
+                      <td>Carbon Credit Sale</td>
+                      <td><div class="stat-change" style="color: red">
+                          <i class="fas fa-arrow-down"></i> -200 
+                      </div></td>
+                      <td><span class="badge success">Completed</span></td>
+                  </tr>
+                  <tr>
+                      <td>Oct 7, 2025 04:45 PM</td>
+                      <td>Redeemed LPG discount coupon</td>
+                      <td>Token Redemption</td>
+                      <td><div class="stat-change" style="color: red">
+                          <i class="fas fa-arrow-down"></i> -20 
+                      </div></td>
                       <td><span class="badge warning">In Progress</span></td>
                   </tr>
               </tbody>
@@ -481,7 +505,7 @@
               <div class="chart-header">
                   <h3 class="chart-title">
                       <i class="fas fa-chart-bar text-primary"></i>
-                      Monthly Claims Trends
+                      Monthly Waste Trends
                   </h3>
               </div>
               <div class="chart-body">
@@ -493,7 +517,7 @@
               <div class="chart-header">
                   <h3 class="chart-title">
                       <i class="fas fa-shield-alt text-primary"></i>
-                      Fraud Categories
+                      Waste Categories
                   </h3>
               </div>
               <div class="chart-body">
@@ -513,12 +537,12 @@
                   <div style="font-weight: 600;">SMS Notification</div>
                   <div style="font-size: 0.875rem; color: #6b7280;">Recieve sms updates</div>
               </div>
-              <div class="action-btn" onclick="window.location.href='/ussd'">
+              <div class="action-btn" onclick="window.location.href='/settings'">
                   <i class="fas fa-mobile"></i>
                   <div style="font-weight: 600;">Contact Us</div>
                   <div style="font-size: 0.875rem; color: #6b7280;">24/7 Customer Support</div>
               </div>
-              <div class="action-btn" onclick="window.location.href='/airtime'">
+              <div class="action-btn" onclick="window.location.href='/rewards'">
                   <i class="fas fa-gift"></i>
                   <div style="font-weight: 600;">Redeem Tokens</div>
                   <div style="font-size: 0.875rem; color: #6b7280;">Enjoy Reduced</div>
@@ -549,19 +573,19 @@
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
             datasets: [
                 {
-                    label: 'Approved',
+                    label: 'Organic',
                     data: [1200, 1350, 1100, 1580, 1750, 2156],
                     backgroundColor: '#10b981',
                     borderRadius: 4
                 },
                 {
-                    label: 'Fraud',
+                    label: 'E-waste',
                     data: [45, 52, 38, 67, 84, 204],
                     backgroundColor: '#ef4444',
                     borderRadius: 4
                 },
                 {
-                    label: 'Pending',
+                    label: 'Recyclables',
                     data: [230, 280, 190, 340, 290, 487],
                     backgroundColor: '#f59e0b',
                     borderRadius: 4
@@ -597,10 +621,10 @@
     const fraudChart = new Chart(fraudCtx, {
         type: 'doughnut',
         data: {
-            labels: ['Staged Accidents', 'Inflated Claims', 'False Documentation', 'Identity Theft'],
+            labels: ['Organic', 'E-waste', 'Recyclabes', 'Agricultural'],
             datasets: [{
-                data: [35, 28, 22, 15],
-                backgroundColor: ['#ef4444', '#f97316', '#eab308', '#06b6d4'],
+                data: [65, 28, 22, 15],
+                backgroundColor: ['#10b981', '#f97316', '#eab308', '#06b6d4'],
                 borderWidth: 0
             }]
         },
