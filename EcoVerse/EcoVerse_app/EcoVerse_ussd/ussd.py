@@ -38,7 +38,7 @@ def ussd():
     #   response  = "CON Enter Full Names"
 
   elif text == "2":
-    response = "CON "
+    response = "CON Get to know your EcoTokens \n"
     response += "1. Check Token Balance \n"
     response += "2. Redeem Tokens \n"
     response += "3. Earn More Tokens \n"
@@ -57,7 +57,7 @@ def ussd():
 
 
   elif text    == '4':
-      response = "CON EcoVerse Waste stations are located at www.ecoverse.co.ke/stations"
+      response = "END EcoVerse Waste stations are located at www.ecoverse.co.ke/stations"
 
 
 
@@ -72,8 +72,10 @@ def ussd():
       response += "2. Report equipment malfunction \n"
       response += "3. Other issues \n"
 
+
+
   elif text    == '7':
-    response = "END Transform your waste into valuable energy and earn rewards while saving the planet. Join the Sustainability Revolution."
+    response = "END Transform your waste into valuable energy and earn rewards while saving the planet. Join the Sustainability Revolution. \nVisit www.ecoverse.co.ke"
 
 
   # Send the response back to the API
