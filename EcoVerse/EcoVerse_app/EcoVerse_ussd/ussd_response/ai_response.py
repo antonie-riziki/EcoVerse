@@ -46,9 +46,10 @@ def autogenerate_tips_response():
 
         Response Format:
         Return one SMS message at a time — short, clear, and ready to send via USSD/SMS gateway.
+        
         """
 
-            )
+        )
 
 
     response = model.generate_content(
@@ -59,7 +60,6 @@ def autogenerate_tips_response():
       )
     
     )
-
 
     
     return response.text
