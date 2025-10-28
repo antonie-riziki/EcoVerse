@@ -73,7 +73,7 @@ EcoVerse supports:
 ## 🚀 **How to Run Locally**
 1. **Clone this repository**
    ```bash
-   git clone https://github.com/yourusername/ecoverse.git
+   git clone https://github.com/antonie-riziki/ecoverse.git
    cd ecoverse
    ```
 2. **Setup environment**
