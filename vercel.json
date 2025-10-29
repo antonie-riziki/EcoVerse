@@ -1,13 +1,13 @@
 {
     "builds": [{
-      "src": "EcoVerse/wsgi.py",
+      "src": "EcoVerse/EcoVerse/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
     }],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "EcoVerse/wsgi.py"
+        "dest": "EcoVerse/EcoVerse/wsgi.py"
       }
     ]
 }
