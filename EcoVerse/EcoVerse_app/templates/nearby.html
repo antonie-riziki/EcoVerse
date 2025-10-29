@@ -375,7 +375,7 @@
         <div class="page-header d-flex justify-content-between align-items-center">
             <div>
                 <h1 class="page-title">Regional Analysis</h1>
-                <p class="page-subtitle">Geographic distribution of claims and fraud patterns</p>
+                <p class="page-subtitle">Geographic distribution of waste patterns</p>
             </div>
             <div class="d-flex gap-3">
                 <button class="btn btn-outline-primary" id="toggleHeatmap">
@@ -388,24 +388,24 @@
         <!-- Stats Overview -->
         <div class="stats-row">
             <div class="stat-card">
-                <div class="stat-label">Total Claims</div>
+                <div class="stat-label">Total Stations</div>
                 <div class="stat-value primary">8</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Approved</div>
+                <div class="stat-label">Empty</div>
                 <div class="stat-value success">3</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Pending</div>
+                <div class="stat-label">Almost Full</div>
                 <div class="stat-value warning">2</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Fraud</div>
+                <div class="stat-label">Fully Occupied</div>
                 <div class="stat-value danger">3</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Total Value</div>
-                <div class="stat-value primary">$380K</div>
+                <div class="stat-label">Total Weight</div>
+                <div class="stat-value primary">380 Kgs</div>
             </div>
         </div>
 
@@ -424,18 +424,20 @@
                         <label class="form-label">Status Filter</label>
                         <select class="form-select" id="statusFilter">
                             <option value="all">All Statuses</option>
-                            <option value="approved">Approved</option>
-                            <option value="pending">Pending</option>
-                            <option value="fraud">Fraud</option>
+                            <option value="Empty">Empty</option>
+                            <option value="Pre-Occupied">Almost Full</option>
+                            <option value="Fully Occupied">Fully Occupied</option>
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Claim Type</label>
+                        <label class="form-label">Waste Type</label>
                         <select class="form-select" id="typeFilter">
-                            <option value="all">All Types</option>
-                            <option value="Auto">Auto</option>
-                            <option value="Home">Home</option>
+                            <option value="all">All Waste</option>
+                            <option value="Empty">Organic</option>
+                            <option value="Home">E-waste</option>
+                            <option value="Home">Recyclables</option>
+                            <option value="Home">Agriculture</option>
                         </select>
                     </div>
 
@@ -443,15 +445,15 @@
                         <h6 class="mb-3">Legend</h6>
                         <div class="legend-item">
                             <div class="legend-color success"></div>
-                            <span>Approved Claims</span>
+                            <span>Empty Stations</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color warning"></div>
-                            <span>Pending Review</span>
+                            <span>Pre-occupied</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color danger"></div>
-                            <span>Fraud Detected</span>
+                            <span>Fully Occupied</span>
                         </div>
                     </div>
                 </div>
@@ -464,18 +466,18 @@
                 </div>
                 <div class="card-body">
                     <div class="insight-item danger">
-                        <div class="insight-title">High Fraud Zone</div>
-                        <div class="insight-desc">Chicago-Miami corridor shows elevated fraud activity</div>
+                        <div class="insight-title">High E-waste Zone</div>
+                        <div class="insight-desc">Dandora corridors shows elevated plastic waste</div>
                     </div>
                     
                     <div class="insight-item warning">
-                        <div class="insight-title">Weather Pattern</div>
-                        <div class="insight-desc">Increased home claims in Pacific Northwest</div>
+                        <div class="insight-title">Agricultural Pattern</div>
+                        <div class="insight-desc">Increased agicultural waste in Makueni and Karatina</div>
                     </div>
 
                     <div class="insight-item primary">
-                        <div class="insight-title">Market Trend</div>
-                        <div class="insight-desc">Auto claims concentration in major metros</div>
+                        <div class="insight-title">Organic Trend</div>
+                        <div class="insight-desc">Illegal dumping concentration in major cities</div>
                     </div>
                 </div>
             </div>
@@ -504,14 +506,14 @@
     <script>
         // Claims data
         const claimLocations = [
-                { id: 1, lat: -1.300000, lng: 36.917000, city: "Embakasi", county: "Nairobi County", status: "fraud", amount: 45230, type: "Community Hub" },
-                { id: 2, lat: -1.270230, lng: 36.994010, city: "Dandora", county: "Nairobi County", status: "approved", amount: 23150, type: "Household" },
-                { id: 3, lat: -1.255021, lng: 36.914515, city: "Kayole", county: "Nairobi County", status: "fraud", amount: 78900, type: "Household" },
-                { id: 4, lat: -1.282301, lng: 36.891365, city: "Umoja", county: "Nairobi County", status: "approved", amount: 12750, type: "Household" },
-                { id: 5, lat: -1.286389, lng: 36.817223, city: "Nairobi CBD", county: "Nairobi County", status: "pending", amount: 56400, type: "Collection Point" },
-                { id: 6, lat: -1.264726, lng: 36.802010, city: "Westlands", county: "Nairobi County", status: "fraud", amount: 89750, type: "Business" },
-                { id: 7, lat: -1.283922, lng: 36.798107, city: "Kilimani", county: "Nairobi County", status: "approved", amount: 34200, type: "Household" },
-                { id: 8, lat: -1.320853, lng: 36.684936, city: "Karen", county: "Nairobi County", status: "pending", amount: 41300, type: "Community Hub" }
+                { id: 1, lat: -1.300000, lng: 36.917000, city: "Embakasi", county: "Nairobi County", status: "Fully Occupied", weight: 45230, type: "Community Hub" },
+                { id: 2, lat: -1.270230, lng: 36.994010, city: "Dandora", county: "Nairobi County", status: "Empty", weight: 23150, type: "Household" },
+                { id: 3, lat: -1.255021, lng: 36.914515, city: "Kayole", county: "Nairobi County", status: "Fully Occupied", weight: 78900, type: "Household" },
+                { id: 4, lat: -1.282301, lng: 36.891365, city: "Umoja", county: "Nairobi County", status: "Empty", weight: 12750, type: "Household" },
+                { id: 5, lat: -1.286389, lng: 36.817223, city: "Nairobi CBD", county: "Nairobi County", status: "Pre-Occupied", weight: 56400, type: "Collection Point" },
+                { id: 6, lat: -1.264726, lng: 36.802010, city: "Westlands", county: "Nairobi County", status: "Fully Occupied", weight: 89750, type: "Business" },
+                { id: 7, lat: -1.283922, lng: 36.798107, city: "Kilimani", county: "Nairobi County", status: "Empty", weight: 34200, type: "Household" },
+                { id: 8, lat: -1.320853, lng: 36.684936, city: "Karen", county: "Nairobi County", status: "Pre-Occupied", weight: 41300, type: "Community Hub" }
             ];
 
 
@@ -527,25 +529,25 @@
 
         function getMarkerColor(status) {
             switch (status) {
-                case 'approved': return '#10b981';
-                case 'pending': return '#f59e0b';
-                case 'fraud': return '#ef4444';
+                case 'Empty': return '#10b981';
+                case 'Pre-Occupied': return '#f59e0b';
+                case 'Fully Occupied': return '#ef4444';
                 default: return '#64748b';
             }
         }
 
-        function formatCurrency(amount) {
+        function formatCurrency(weight) {
             return new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'
-            }).format(amount);
+            }).format(weight);
         }
 
         function getStatusBadge(status) {
             const badges = {
-                'approved': 'badge-success',
-                'pending': 'badge-warning',
-                'fraud': 'badge-danger'
+                'Empty': 'badge-success',
+                'Pre-Occupied': 'badge-warning',
+                'Fully Occupied': 'badge-danger'
             };
             return `<span class="badge ${badges[status]}">${status.charAt(0).toUpperCase() + status.slice(1)}</span>`;
         }
@@ -565,9 +567,9 @@
                 }).addTo(map);
 
                 marker.bindPopup(`
-                    <div style="min-width: 200px;">
+                    <div style="min-width: 250px;">
                         <h6><strong>${location.city}, ${location.county}</strong></h6>
-                        <p class="mb-1">${location.type} Claim - ${formatCurrency(location.amount)}</p>
+                        <p class="mb-1">${location.type} Claim - ${formatCurrency(location.weight)}</p>
                         <div>${getStatusBadge(location.status)}</div>
                     </div>
                 `);
@@ -590,8 +592,8 @@
                             <span>${location.type}</span>
                         </div>
                         <div class="location-row">
-                            <span class="text-muted">Amount:</span>
-                            <span><strong>${formatCurrency(location.amount)}</strong></span>
+                            <span class="text-muted">Weight:</span>
+                            <span><strong>${(location.weight)} kgs</strong></span>
                         </div>
                         <div>${getStatusBadge(location.status)}</div>
                     </div>
