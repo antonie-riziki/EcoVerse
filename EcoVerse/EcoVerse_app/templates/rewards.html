@@ -353,6 +353,84 @@
         .sidebar { transform: translateX(-100%); }
         .main-content { margin-left: 0; }
     }
+
+
+    .reward-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .reward-modal-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    .close {
+      float: right;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #555;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .payment-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .pay-btn {
+      flex: 1;
+      margin: 0 0.3rem;
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .pay-btn:hover {
+      background: #c8e6c9;
+    }
+    .submit-btn {
+      margin-top: 1.5rem;
+      width: 100%;
+      background: #28a745;
+      color: #fff;
+      border: none;
+      padding: 0.7rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background: #218838;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
+    }
         
 
   </style>
@@ -391,7 +469,7 @@
           <p class="muted" style="padding-bottom: 5px; padding-left: 1.5em">Enjoy eco-friendly travel with Basi Go’s electric buses. Redeem this offer for discounted fares and support clean mobility in Kenya’s cities.</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem; padding-bottom: 1.2rem; padding-right: 1.5em; padding-left: 1.5em">
             <strong><i class="fas fa-coins"></i> 500</strong>
-            <button class="btn">Redeem Now</button>
+            <button class="btn" onclick="openRedeemModal()">Redeem Now</button>
           </div>
         </div>
 
@@ -401,7 +479,7 @@
           <p class="muted" style="padding-bottom: 5px; padding-left: 1.5em">Empower your home with clean solar energy. Get subsidized KPLC tokens or installation support to reduce your electricity costs sustainably.</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem; padding-bottom: 1.2rem; padding-right: 1.5em; padding-left: 1.5em">
             <strong><i class="fas fa-coins"></i> 2000</strong>
-            <button class="btn">Redeem Now</button>
+            <button class="btn" onclick="openRedeemModal()">Redeem Now</button>
           </div>
         </div>
 
@@ -411,7 +489,7 @@
           <p class="muted" style="padding-bottom: 5px; padding-left: 1.5em">Light up your home with affordable solar energy. Redeem this set to enjoy pay-as-you-go solar lighting that’s clean, reliable, and sustainable.</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem; padding-bottom: 1.2rem; padding-right: 1.5em; padding-left: 1.5em">
             <strong><i class="fas fa-coins"></i> 300</strong>
-            <button class="btn">Redeem Now</button>
+            <button class="btn" onclick="openRedeemModal()">Redeem Now</button>
           </div>
         </div>
 
@@ -421,7 +499,7 @@
           <p class="muted" style="padding-bottom: 5px; padding-left: 1.5em">Switch to cleaner cooking with Koko Fuel and reduce carbon emissions. Redeem now and we’ll plant 10 trees in your name — cooking with purpose!</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem; padding-bottom: 1.2rem; padding-right: 1.5em; padding-left: 1.5em">
             <strong><i class="fas fa-coins"></i> 1000</strong>
-            <button class="btn">Redeem Now</button>
+            <button class="btn" onclick="openRedeemModal()">Redeem Now</button>
           </div>
         </div>
 
@@ -431,7 +509,7 @@
           <p class="muted" style="padding-bottom: 5px; padding-left: 1.5em">Save energy and protect the planet with Jikokoa’s smart stove. It’s efficient, uses less charcoal, and helps cut household carbon emissions.</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem; padding-bottom: 1.2rem; padding-right: 1.5em; padding-left: 1.5em">
             <strong><i class="fas fa-coins"></i> 1500</strong>
-            <button class="btn">Redeem Now</button>
+            <button class="btn" onclick="openRedeemModal()">Redeem Now</button>
           </div>
         </div>
 
@@ -441,7 +519,32 @@
           <p class="muted" style="padding-bottom: 5px; padding-left: 1.5em">Power your nights sustainably with SunKing solar solutions. Redeem this reward for bright, affordable lighting and a 1-ton CO₂ offset certification.</p>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-top:.5rem; padding-bottom: 1.2rem; padding-right: 1.5em; padding-left: 1.5em">
             <strong><i class="fas fa-coins"></i> 800</strong>
-            <button class="btn">Redeem Now</button>
+            <button class="btn" onclick="openRedeemModal()">Redeem Now</button>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="redeemModal" class="reward-modal">
+          <div class="reward-modal-content">
+            <span class="close" onclick="closeRedeemModal()">&times;</span>
+            <h3>Redeem Reward</h3>
+
+            <form id="redeemForm">
+              <label for="uniqueId">Unique ID</label>
+              <input type="text" id="uniqueId" name="uniqueId" placeholder="Enter your unique ID" required>
+
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="e.g. 07XXXXXXXX" required>
+
+              <p>Select Payment Method:</p>
+              <div class="payment-buttons">
+                <button type="button" class="pay-btn">Send Money</button>
+                <button type="button" class="pay-btn">Paybill</button>
+                <button type="button" class="pay-btn">Buy Goods</button>
+              </div>
+
+              <button type="submit" class="submit-btn">Confirm Redemption</button>
+            </form>
           </div>
         </div>
       </section>
@@ -613,20 +716,20 @@
                   
                   <div class="form-group">
                       <label>Description</label>
-                      <textarea id="messageText" rows="4" placeholder="Use {{name}}, {{amount}}, {{link}} for personalization" oninput="updateCharCount()"></textarea>
+                      <textarea id="messageText" rows="4" placeholder="Describe your waste to energy impact" oninput="updateCharCount()"></textarea>
                       <div class="char-count" id="charCount">0 / 160 characters</div>
                   </div>
                   
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                       <label>Personalization Preview</label>
                       <div style="padding: 1rem; background: #f3f4f6; border-radius: 8px; font-size: 0.875rem;">
                           <strong>Sample:</strong> Hi John, your payment of Ksh 500 was successful. View: http://link.co/abc
                       </div>
-                  </div>
+                  </div> -->
                   
                   <div class="form-group">
                       <label>Target Plan</label>
-                      <textarea rows="3" placeholder="Paste phone numbers (one per line) or upload CSV"></textarea>
+                      <textarea rows="3" placeholder="Upload File"></textarea>
                       <button type="button" class="btn btn-accent" style="margin-top: 0.5rem;" onclick="document.getElementById('csvUpload').click()">
                           <i class="fas fa-upload"></i> Upload File
                       </button>
@@ -635,19 +738,19 @@
                   </div>
                   
                   <div class="form-group">
-                      <label>Estimated Cost</label>
+                      <label></label>
                       <div style="padding: 1rem; background: rgba(5, 109, 95, 0.1); border-radius: 8px; color: var(--primary); font-weight: 600;">
-                          KSh 1,450 (based on 1,000 recipients @ Ksh 1.45/SMS)
+                          Join the sustainability revolution. Transform your waste into valuable energy and earn rewards while saving the planet.
                           <!-- In production: cost calculated via PayHero API -->
                       </div>
                   </div>
                   
                   <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
-                      <button type="button" class="btn" style="background: #e5e7eb; flex: 1;" onclick="sendTest()">
-                          <i class="fas fa-flask"></i> Send Test
+                      <button type="button" class="btn" style="background: lightcoral; flex: 1;" onclick="sendTest()">
+                          <i class="fas fa-flask"></i> Cancel
                       </button>
                       <button type="submit" class="btn btn-primary" style="flex: 1;">
-                          <i class="fas fa-paper-plane"></i> Send Campaign
+                          <i class="fas fa-paper-plane"></i> Create Campaign
                       </button>
                   </div>
               </form>
@@ -659,6 +762,19 @@
 
   {% include 'chatbox.html' %}
   <script>
+
+        function openRedeemModal() {
+          document.getElementById('redeemModal').style.display = 'flex';
+        }
+        function closeRedeemModal() {
+          document.getElementById('redeemModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+          if (event.target === document.getElementById('redeemModal')) {
+            closeRedeemModal();
+          }
+        };
+
         // Modal controls
         function openModal() {
             document.getElementById('campaignModal').classList.add('active');
