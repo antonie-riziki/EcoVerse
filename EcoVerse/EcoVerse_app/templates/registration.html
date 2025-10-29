@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Register | EcoVerse</title>
   <meta name="description" content="Create your EcoVerse account to start earning EcoTokens and tracking your sustainability impact." />
-  <link rel="canonical" href="./registration.html" />
+  <link rel="canonical" href="/registration" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
@@ -43,7 +43,7 @@
       <div class="logo"><i class="fa-solid fa-leaf"></i></div>
       <h1>Join EcoVerse</h1>
       <p class="sub">Start your journey to a greener tomorrow</p>
-      <form class="row" onsubmit="event.preventDefault(); window.location.href='./dashboard.html'">
+      <form class="row" onsubmit="event.preventDefault(); window.location.href='/dashboard'">
         <div>
           <label for="fullName">Full Name</label>
           <input id="fullName" name="fullName" type="text" placeholder="Enter your full name" required />
@@ -53,6 +53,13 @@
           <input id="email" name="email" type="email" placeholder="your.email@example.com" required />
         </div>
         <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+            <div class="relative mt-1">
+                <!-- <i class="fas fa-phone absolute left-3 top-3 text-gray-400"></i> -->
+                <input id="phone" name="phone" type="tel" required class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="+1 (555) 123-4567">
+            </div>
+        </div>
+        <div>
           <label for="password">Password</label>
           <input id="password" name="password" type="password" placeholder="Create a strong password" required />
         </div>
@@ -60,13 +67,13 @@
           <label for="confirmPassword">Confirm Password</label>
           <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Re-enter your password" required />
         </div>
-        <div>
+        <!-- <div>
           <label for="householdId">Household ID (Optional)</label>
           <input id="householdId" name="householdId" type="text" placeholder="Enter household ID if available" />
-        </div>
+        </div> -->
         <button class="btn" type="submit">Join EcoVerse <span aria-hidden>🌿</span></button>
       </form>
-      <p class="small" style="margin-top:1rem">Already have an account? <a class="link" href="./signin.html">Sign In</a></p>
+      <p class="small" style="margin-top:1rem">Already have an account? <a class="link" href="/signin">Sign In</a></p>
     </div>
   </main>
   <script>

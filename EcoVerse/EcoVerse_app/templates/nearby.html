@@ -569,7 +569,7 @@
                 marker.bindPopup(`
                     <div style="min-width: 250px;">
                         <h6><strong>${location.city}, ${location.county}</strong></h6>
-                        <p class="mb-1">${location.type} Claim - ${formatCurrency(location.weight)}</p>
+                        <p class="mb-1">${location.type} - ${(location.weight)} kgs</p>
                         <div>${getStatusBadge(location.status)}</div>
                     </div>
                 `);

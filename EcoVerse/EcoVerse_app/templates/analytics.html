@@ -43,6 +43,7 @@
 
     body{
       margin:0;
+      padding-bottom: 1.5em;
       background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
       color:var(--text);
       font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
@@ -223,6 +224,17 @@
         }
       }
 
+    .anomaly-item .status {
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-transform: capitalize;
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+    .status.investigate { background: #fff3cd; color: #856404; }
+    .status.flagged { background: #f8d7da; color: #721c24; }
+    .status.fraud { background: #f5c6cb; color: #721c24; }
+
   </style>
 </head>
 <body>
@@ -350,10 +362,16 @@
 
   </main>
   </div>
+  </body>
 
   {% include 'chatbox.html' %}
 
+  <!-- Dependencies -->
+  <!-- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> -->
+
   <script>
+  
+  
   /***********************
    * Sample dataset
    ***********************/
@@ -369,8 +387,8 @@
       }
       return arr;
     })(),
-    wasteKg: [12, 8, 14, 9, 20, 18, 22, 16, 14, 12, 24, 19, 17, 21],
-    energyKwh: [6,4,7,5,10,9,11,8,7,6,12,10,8,11],
+    wasteKg: [12, 10, 14, 44, 20, 18, 12, 16, 14, 32, 24, 19, 11, 21],
+    energyKwh: [6,4,7,5,40,9,11,8,7,22,12,10,13,11],
     tokensIssued: [40,30,50,35,80,70,90,64,55,46,90,74,62,85],
     // waste composition
     comp: {
@@ -400,16 +418,20 @@
     ]
   };
 
+  // </script>
+
+  // <script>
+
   // Nairobi markers (spread across eastlands to westlands)
   const claimLocations = [
-    { id: 1, lat: -1.303200, lng: 36.861000, neighbourhood: "Embakasi", status: "fraud", amount: 45230, type: "Community Hub" },
-    { id: 2, lat: -1.248000, lng: 36.905000, neighbourhood: "Dandora", status: "approved", amount: 23150, type: "Household" },
-    { id: 3, lat: -1.258000, lng: 36.891000, neighbourhood: "Kayole", status: "fraud", amount: 78900, type: "Household" },
-    { id: 4, lat: -1.270000, lng: 36.912000, neighbourhood: "Umoja", status: "approved", amount: 12750, type: "Household" },
-    { id: 5, lat: -1.286389, lng: 36.817223, neighbourhood: "Nairobi CBD", status: "pending", amount: 56400, type: "Collection Point" },
-    { id: 6, lat: -1.264726, lng: 36.806000, neighbourhood: "Westlands", status: "fraud", amount: 89750, type: "Business" },
-    { id: 7, lat: -1.290000, lng: 36.790000, neighbourhood: "Kilimani", status: "approved", amount: 34200, type: "Household" },
-    { id: 8, lat: -1.320853, lng: 36.684936, neighbourhood: "Karen", status: "pending", amount: 41300, type: "Community Hub" }
+    { id: 1, lat: -1.303200, lng: 36.861000, neighbourhood: "Embakasi", status: "Fully Occupied", weight: 45230, type: "Community Hub" },
+    { id: 2, lat: -1.248000, lng: 36.905000, neighbourhood: "Dandora", status: "Empty", weight: 23150, type: "Household" },
+    { id: 3, lat: -1.258000, lng: 36.891000, neighbourhood: "Kayole", status: "Fully Occupied", weight: 78900, type: "Household" },
+    { id: 4, lat: -1.270000, lng: 36.912000, neighbourhood: "Umoja", status: "Empty", weight: 12750, type: "Household" },
+    { id: 5, lat: -1.286389, lng: 36.817223, neighbourhood: "Nairobi CBD", status: "Pre-Occupied", weight: 56400, type: "Collection Point" },
+    { id: 6, lat: -1.264726, lng: 36.806000, neighbourhood: "Westlands", status: "Fully Occupied", weight: 89750, type: "Business" },
+    { id: 7, lat: -1.290000, lng: 36.790000, neighbourhood: "Kilimani", status: "Empty", weight: 34200, type: "Household" },
+    { id: 8, lat: -1.320853, lng: 36.684936, neighbourhood: "Karen", status: "Pre-Occupied", weight: 41300, type: "Community Hub" }
   ];
 
 
@@ -422,6 +444,7 @@
     document.getElementById('credits').textContent = Math.round(sample.tokensIssued.reduce((a,b)=>a+b,0) / 10);
     document.getElementById('activeHubs').textContent = claimLocations.length;
     document.getElementById('participants').textContent = '1,234';
+   
 
     // top table
     const topTable = document.getElementById('topTable');
@@ -433,25 +456,14 @@
 
     // anomalies
     const anomalyList = document.getElementById('anomalyList');
+    sample.anomalies.forEach(a=>{
+      const div = document.createElement('div');
+      div.style.padding='8px';div.style.marginBottom='8px';div.style.borderRadius='8px';div.style.background='linear-gradient(180deg,#fff,#f7fff9)';
+      div.innerHTML = `<div style="display:flex;justify-content:space-between;"><div><strong>${a.hub}</strong><div class="small">${a.desc}</div></div><div style="text-align:right"><div class="small">${a.date}</div><div style="margin-top:6px"><span class="badge ${a.status==='Fully Occupied'?'Fully Occupied':a.status==='flagged'?'Pre-Occupied':'Empty'}">${a.status.toUpperCase()}</span></div></div></div>`;
+      anomalyList.appendChild(div);
+    });
+
   });
-
-
-  // // top table
-  // const topTable = document.getElementById('topTable');
-  // sample.hubs.forEach(h => {
-  //   const tr = document.createElement('tr');
-  //   tr.innerHTML = `<td>${h.name}</td><td>${h.kg}</td><td>${h.credits}</td>`;
-  //   topTable.appendChild(tr);
-  // });
-
-  // // anomalies
-  // const anomalyList = document.getElementById('anomalyList');
-  // sample.anomalies.forEach(a=>{
-  //   const div = document.createElement('div');
-  //   div.style.padding='8px';div.style.marginBottom='8px';div.style.borderRadius='8px';div.style.background='linear-gradient(180deg,#fff,#f7fff9)';
-  //   div.innerHTML = `<div style="display:flex;justify-content:space-between;"><div><strong>${a.hub}</strong><div class="small">${a.desc}</div></div><div style="text-align:right"><div class="small">${a.date}</div><div style="margin-top:6px"><span class="badge ${a.status==='fraud'?'fraud':a.status==='flagged'?'pending':'approved'}">${a.status.toUpperCase()}</span></div></div></div>`;
-  //   anomalyList.appendChild(div);
-  // });
 
   // tx list
   const txList = document.getElementById('txList');
@@ -486,8 +498,8 @@
     data: {
       labels: sample.days,
       datasets: [
-        { label:'Waste (kg)', data: sample.wasteKg, borderColor: palette.green, backgroundColor: 'rgba(0,168,107,0.08)', tension:0.3, yAxisID:'y1', pointRadius:3 },
-        { label:'Energy (kWh)', data: sample.energyKwh, borderColor: palette.blue, backgroundColor:'rgba(46,134,222,0.08)', tension:0.3, yAxisID:'y2', pointRadius:3 }
+        { label:'Organic (kg)', data: sample.wasteKg, borderColor: palette.green, backgroundColor: 'rgba(0,168,107,0.08)', tension:0.3, yAxisID:'y1', pointRadius:3 },
+        { label:'E-waste (kg)', data: sample.energyKwh, borderColor: palette.blue, backgroundColor:'rgba(46,134,222,0.08)', tension:0.3, yAxisID:'y2', pointRadius:3 }
       ]
     },
     options: {
@@ -588,15 +600,15 @@
 
   // marker color by status
   function getColor(status){
-    if(status==='fraud') return '#ff6b6b';
-    if(status==='approved') return '#00a86b';
-    if(status==='pending') return '#ffb84d';
+    if(status==='Fully Occupied') return '#ff6b6b';
+    if(status==='Empty') return '#00a86b';
+    if(status==='Pre-Occupied') return '#ffb84d';
     return '#999';
   }
 
   claimLocations.forEach(loc=>{
     const circle = L.circleMarker([loc.lat, loc.lng], {radius:8, fillColor:getColor(loc.status), color:'#fff', weight:1, fillOpacity:0.9}).addTo(map);
-    circle.bindPopup(`<strong>${loc.neighbourhood}</strong><div class="small">${loc.type}</div><div class="small">Status: ${loc.status}</div><div class="small">Amount: ${loc.amount}</div>`);
+    circle.bindPopup(`<strong>${loc.neighbourhood}</strong><div class="small">${loc.type}</div><div class="small">Status: ${loc.status}</div><div class="small">Weight: ${loc.weight}</div>`);
   });
 
   /***********************
@@ -650,6 +662,7 @@
     barChart.data.datasets[0].data = newTokens;
     pieChart.data.datasets[0].data = [Math.round(sample.comp.organic * mul), sample.comp.plastic, sample.comp.metal, sample.comp.glass, sample.comp.other];
     lineChart.update(); barChart.update(); pieChart.update();
+    
     // update summary
     document.getElementById('totalWaste').textContent = newWaste.reduce((a,b)=>a+b,0) + ' kg';
     document.getElementById('energyGen').textContent = newEnergy.reduce((a,b)=>a+b,0) + ' kWh';
@@ -666,5 +679,5 @@
   });
 
   </script>
-</body>
+
 </html>

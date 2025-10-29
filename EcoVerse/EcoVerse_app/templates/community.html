@@ -16,7 +16,7 @@
       --muted: #687076;
       --accent: #00A86B;
       --accent-2: #1abc9c;
-      --glass: rgba(255,255,255,0.7);
+      --glass: rgba(255,255,255,0.9);
       --radius: 12px;
       --shadow: 0 8px 20px rgba(8,56,34,0.06);
       --maxw: 1200px;
@@ -88,6 +88,71 @@
       .map{height:300px}
       .local-sidebar{display:none}
     }
+
+    /* Leaderboard container */
+    #leaderboard {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 10px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Each leaderboard entry */
+    #leaderboard li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-bottom: 1px solid #eef2f3;
+      font-size: 0.95rem;
+      color: #2b2b2b;
+      transition: background 0.25s ease, transform 0.2s ease;
+    }
+
+    /* Remove border for last item */
+    #leaderboard li:last-child {
+      border-bottom: none;
+    }
+
+    /* Rank highlighting colors (optional) */
+    #leaderboard li:nth-child(1) {
+      background: linear-gradient(90deg, #00a86b1a, #ffffff);
+      font-weight: 600;
+      color: #008f5a;
+    }
+    #leaderboard li:nth-child(2) {
+      background: linear-gradient(90deg, #e6c2291a, #ffffff);
+      font-weight: 600;
+      color: #b8860b;
+    }
+    #leaderboard li:nth-child(3) {
+      background: linear-gradient(90deg, #ff6b6b1a, #ffffff);
+      font-weight: 600;
+      color: #c0392b;
+    }
+
+    /* Hover effect */
+    #leaderboard li:hover {
+      background: #f5fdf8;
+      transform: translateX(3px);
+    }
+
+    /* Optional: Add small rank numbers beside names */
+    #leaderboard li::before {
+      counter-increment: rank;
+      content: counter(rank) ". ";
+      font-weight: 600;
+      color: #00a86b;
+      margin-right: 8px;
+    }
+    #leaderboard {
+      counter-reset: rank;
+    }
+
   </style>
 </head>
 <body>
@@ -273,8 +338,8 @@
               </div>
             </div>
 
-            <div style="margin-top:12px">
-              <button class="ghost" id="applyLeadBtn">Apply to be Community Lead</button>
+            <div style="margin-top:12px;">
+              <button class="ghost" id="applyLeadBtn" style="background-color:#00A86B">Apply to be Community Lead</button>
             </div>
           </div>
         </div>
@@ -345,7 +410,7 @@
       impact:['24 tons recycled','500 trees sponsored'], events:[{id:'e1',title:'Cleanup drive',date:'2025-11-01'}]
     },
     {
-      id:'c2', name:'Kilimani Eco Hub', region:'cbd', category:'energy',
+      id:'c2', name:'Kilimani Echo Hub', region:'cbd', category:'energy',
       lat:-1.283922, lng:36.798107,
       tagline:'Solar microgrids & training',
       desc:'Deploys low-cost solar units and runs skills training for technicians.',
@@ -367,8 +432,49 @@
       desc:'Large-scale tree planting projects with community stewardship.',
       verified:true, members: 201, points: 22040, credits: 2500,
       impact:['12,000 trees planted'], events:[{id:'e4',title:'Planting weekend',date:'2025-11-07'}]
+    },
+    {
+      id:'c5', name:'Kibera Waste Warriors', region:'kibera', category:'recycling',
+      lat:-1.311509, lng:36.784528,
+      tagline:'Turning waste into wealth',
+      desc:'Collects plastics and metals for recycling while creating local jobs.',
+      verified:true, members: 143, points: 10480, credits: 1100,
+      impact:['18 tons collected','300 homes served'], events:[{id:'e5',title:'Community cleanup',date:'2025-11-03'}]
+    },
+    {
+      id:'c6', name:'Dagoretti Energy Co-op', region:'dagoretti', category:'energy',
+      lat:-1.297500, lng:36.738400,
+      tagline:'Biogas for better living',
+      desc:'Trains farmers to convert organic waste into biogas and organic fertilizer.',
+      verified:true, members: 79, points: 8750, credits: 890,
+      impact:['60 biogas units installed','200 families benefiting'], events:[{id:'e6',title:'Biogas training',date:'2025-11-02'}]
+    },
+    {
+      id:'c7', name:'Ruiru Smart Farmers', region:'ruiru', category:'agriculture',
+      lat:-1.147600, lng:36.958300,
+      tagline:'Tech-enabled green farming',
+      desc:'Promotes climate-smart agriculture using IoT sensors and drip irrigation.',
+      verified:false, members: 67, points: 6940, credits: 620,
+      impact:['15 farms digitized','20% yield increase'], events:[{id:'e7',title:'Smart farming expo',date:'2025-11-05'}]
+    },
+    {
+      id:'c8', name:'Thika River Guardians', region:'thika', category:'conservation',
+      lat:-1.037100, lng:37.070600,
+      tagline:'Protecting rivers, restoring life',
+      desc:'A youth-led initiative focused on river cleanup and biodiversity protection.',
+      verified:true, members: 98, points: 10120, credits: 970,
+      impact:['10km river cleaned','200 species documented'], events:[{id:'e8',title:'Water testing day',date:'2025-11-06'}]
+    },
+    {
+      id:'c9', name:'Ngong Hills Reforest Team', region:'ngong', category:'reforestation',
+      lat:-1.351200, lng:36.656900,
+      tagline:'Green hills, clean air',
+      desc:'Reforestation and soil conservation in the Ngong forest belt.',
+      verified:true, members: 156, points: 18760, credits: 1900,
+      impact:['7,000 trees planted','Soil erosion reduced by 40%'], events:[{id:'e9',title:'Tree planting drive',date:'2025-11-04'}]
     }
   ];
+
 
   function loadData(){
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -403,7 +509,7 @@
   }
 
   function generatePopupHTML(c){
-    return `<div style="font-weight:800">${escapeHtml(c.name)} ${c.verified?'<span style="color:#0b6b36;font-weight:700">● Verified</span>':''}</div>
+    return `<div style="font-weight:800">${escapeHtml(c.name)} ${c.verified?'<span style="color:#0b6b36;font-weight:700"> ● Verified</span>':''}</div>
             <div style="margin-top:6px;font-size:13px">${escapeHtml(c.tagline)}</div>
             <div style="margin-top:8px;font-size:13px"><strong>Impact:</strong> ${escapeHtml((c.impact||[]).slice(0,2).join(' • '))}</div>
             <div style="margin-top:8px;font-size:13px"><strong>Members:</strong> ${c.members} • <strong>Credits:</strong> ${c.credits}</div>
@@ -472,7 +578,7 @@
     const lb = document.getElementById('leaderboard'); lb.innerHTML = '';
     const top = communities.slice().sort((a,b)=>b.points - a.points).slice(0,5);
     top.forEach((t,i)=> {
-      const li = document.createElement('li'); li.textContent = `${i+1}. ${t.name} — ${t.points} pts`; lb.appendChild(li);
+      const li = document.createElement('li'); li.textContent = `${t.name} — ${t.points} pts`; lb.appendChild(li);
     });
   }
 
