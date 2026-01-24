@@ -14,6 +14,11 @@ import africastalking
 
 
 
+from opik import configure 
+from opik.integrations.genai import track_genai 
+
+configure() 
+
 
 
 load_dotenv()
@@ -41,13 +46,7 @@ Opik Configuration for Gemini AI Model
 
 
 
-import os
 
-import google.genai
-from opik import configure 
-from opik.integrations.genai import track_genai 
-
-configure() 
 
 # os.environ["GEMINI_API_KEY"] = "your-api-key-here"
 
