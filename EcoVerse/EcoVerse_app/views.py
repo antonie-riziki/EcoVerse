@@ -44,10 +44,6 @@ Opik Configuration for Gemini AI Model
 
 """
 
-
-
-
-
 # os.environ["GEMINI_API_KEY"] = "your-api-key-here"
 
 # opik_client = google.genai.Client()
@@ -153,16 +149,6 @@ def get_gemini_response(prompt):
 
 
 
-def test_gemini(prompt):
-    response = client.models.generate_content(
-            model='gemini-2.0-flash',
-            contents=prompt
-        )
-    return response.text
-# print(response.model_dump_json(
-#     exclude_none=True, indent=4))
-
-
 
 
 # Create your views here.
@@ -215,7 +201,6 @@ def chatbot_response(request):
 
         if user_message:
             bot_reply = get_gemini_response(user_message)
-            # bot_reply = test_gemini(user_message)
             opik_response = opik_gemini_agent(user_message)
             # print("Opik Gemini Response:", opik_response)
             return JsonResponse({'response': bot_reply})
