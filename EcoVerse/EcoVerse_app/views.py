@@ -169,7 +169,9 @@ def get_gemini_response(prompt):
 try:
     firebase_admin.get_app()
 except ValueError:
-    firebase_admin.initialize_app()
+    firebase_admin.initialize_app(options={
+        'projectId': os.getenv('FIREBASE_PROJECT_ID'),
+    })
 
 def get_firebase_context():
     return {
@@ -235,14 +237,22 @@ def firebase_auth_view(request):
         uid = decoded_token['uid']
         email = decoded_token.get('email')
 
+        print(f"Authenticated Firebase user: {email} ({uid})")
+
         # Get or create user
         user, created = User.objects.get_or_create(username=uid, defaults={'email': email})
+
+        if created:
+            print(f"Created new Django user for {email}")
+        else:
+            print(f"Logged in existing Django user {email}")
 
         # Log the user in
         login(request, user)
 
         return JsonResponse({'status': 'success'})
     except Exception as e:
+        print(f"Firebase auth error: {str(e)}")
         return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
 @csrf_exempt
