@@ -10,6 +10,10 @@ import os
 import sys
 import json
 import africastalking
+import firebase_admin
+from firebase_admin import auth as firebase_auth, credentials
+from django.contrib.auth.models import User
+from django.contrib.auth import login
 
 
 
@@ -17,7 +21,7 @@ import africastalking
 from opik import configure 
 from opik.integrations.genai import track_genai 
 
-configure() 
+# configure()
 
 
 
@@ -29,12 +33,16 @@ sys.path.insert(1, './EcoVerse_app')
 
 
 # genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+if os.getenv("GOOGLE_API_KEY"):
+    client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
+else:
+    client = None
 
-africastalking.initialize(
-    username="EMID",
-    api_key=os.getenv("AT_API_KEY")
-)
+if os.getenv("AT_API_KEY"):
+    africastalking.initialize(
+        username="EMID",
+        api_key=os.getenv("AT_API_KEY")
+    )
 
 
 
@@ -47,10 +55,13 @@ Opik Configuration for Gemini AI Model
 # os.environ["GEMINI_API_KEY"] = "your-api-key-here"
 
 # opik_client = google.genai.Client()
-client = track_genai(client) 
+if client:
+    client = track_genai(client)
 
 
 def opik_gemini_agent(prompt: str):
+    if not client:
+        return "Gemini client not initialized"
     response = client.models.generate_content(
         model="gemini-2.0-flash-001", contents=prompt
     )
@@ -63,6 +74,8 @@ def opik_gemini_agent(prompt: str):
 
 
 def get_gemini_response(prompt):
+    if not client:
+        return "Gemini client not initialized"
 
     response = client.models.generate_content(
         model='gemini-2.0-flash',
@@ -151,17 +164,36 @@ def get_gemini_response(prompt):
 
 
 
+# Initialize Firebase Admin SDK
+# In a real app, you would use a service account JSON file
+try:
+    firebase_admin.get_app()
+except ValueError:
+    firebase_admin.initialize_app()
+
+def get_firebase_context():
+    return {
+        'firebase_api_key': os.getenv('FIREBASE_API_KEY', ''),
+        'firebase_auth_domain': os.getenv('FIREBASE_AUTH_DOMAIN', ''),
+        'firebase_project_id': os.getenv('FIREBASE_PROJECT_ID', ''),
+        'firebase_storage_bucket': os.getenv('FIREBASE_STORAGE_BUCKET', ''),
+        'firebase_messaging_sender_id': os.getenv('FIREBASE_MESSAGING_SENDER_ID', ''),
+        'firebase_app_id': os.getenv('FIREBASE_APP_ID', ''),
+    }
+
 # Create your views here.
 def home(request):
     return render(request, 'index.html')
 
 
 def registration(request):
-    return render(request, 'registration.html')
+    context = get_firebase_context()
+    return render(request, 'registration.html', context)
 
 
 def signin(request):
-    return render(request, 'signin.html')
+    context = get_firebase_context()
+    return render(request, 'signin.html', context)
 
 
 def dashboard(request):
@@ -192,6 +224,26 @@ def community(request):
     return render(request, 'community.html')
 
 
+
+@csrf_exempt
+@require_POST
+def firebase_auth_view(request):
+    try:
+        data = json.loads(request.body)
+        id_token = data.get('idToken')
+        decoded_token = firebase_auth.verify_id_token(id_token)
+        uid = decoded_token['uid']
+        email = decoded_token.get('email')
+
+        # Get or create user
+        user, created = User.objects.get_or_create(username=uid, defaults={'email': email})
+
+        # Log the user in
+        login(request, user)
+
+        return JsonResponse({'status': 'success'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
 @csrf_exempt
 def chatbot_response(request):

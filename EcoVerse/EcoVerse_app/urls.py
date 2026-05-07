@@ -15,6 +15,7 @@ urlpatterns = [
     path('nearby', views.nearby, name="nearby"),
     path('community', views.community, name="community"),
     path('chatbot-response/', views.chatbot_response, name='chatbot_response'),
+    path('auth/firebase/', views.firebase_auth_view, name='firebase_auth'),
 
 
 ]
