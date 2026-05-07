@@ -23,9 +23,21 @@
     border-right: 1px solid #e5e7eb;
     padding: 1.5rem;
     position: fixed;
-    height:inherit;
+    height: 100vh;
     overflow-y: auto;
-    position: sticky;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
 }
 
 .sidebar-logo {
@@ -85,7 +97,7 @@ nav-link:active {
 
 
 <!-- Sidebar Navigation -->
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
         <i class="fas fa-leaf"></i>
         <h1>EcoVerse</h1>
