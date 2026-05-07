@@ -80,6 +80,10 @@
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
 
+      const submitBtn = signinForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Signing in...";
+
       try {
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
         const idToken = await userCredential.user.getIdToken();
@@ -96,10 +100,15 @@
         if (response.ok) {
           window.location.href = '/dashboard';
         } else {
-          alert("Authentication failed on server");
+          const errorData = await response.json();
+          alert("Authentication failed on server: " + (errorData.message || "Unknown error"));
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Sign In to EcoVerse 🌍";
         }
       } catch (error) {
         alert(error.message);
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Sign In to EcoVerse 🌍";
       }
     });
 

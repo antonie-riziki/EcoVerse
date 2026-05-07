@@ -95,6 +95,7 @@
     const registrationForm = document.getElementById('registrationForm');
     registrationForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const fullName = document.getElementById('fullName').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
@@ -103,6 +104,10 @@
         alert("Passwords do not match");
         return;
       }
+
+      const submitBtn = registrationForm.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Joining...";
 
       try {
         const userCredential = await auth.createUserWithEmailAndPassword(email, password);
@@ -115,16 +120,24 @@
             'Content-Type': 'application/json',
             'X-CSRFToken': '{{ csrf_token }}'
           },
-          body: JSON.stringify({ idToken: idToken })
+          body: JSON.stringify({
+            idToken: idToken,
+            fullName: fullName
+          })
         });
 
         if (response.ok) {
           window.location.href = '/dashboard';
         } else {
-          alert("Authentication failed on server");
+          const errorData = await response.json();
+          alert("Authentication failed on server: " + (errorData.message || "Unknown error"));
+          submitBtn.disabled = false;
+          submitBtn.innerText = "Join EcoVerse 🌿";
         }
       } catch (error) {
         alert(error.message);
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Join EcoVerse 🌿";
       }
     });
 

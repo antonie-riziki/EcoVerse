@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # import google.generativeai as genai # deprecated version
 from google import genai
 from google.genai import types
@@ -13,7 +13,8 @@ import africastalking
 import firebase_admin
 from firebase_admin import auth as firebase_auth, credentials
 from django.contrib.auth.models import User
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -196,32 +197,43 @@ def signin(request):
     return render(request, 'signin.html', context)
 
 
+@login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
 
 
+@login_required
 def settings(request):
     return render(request, 'settings.html')
 
 
+@login_required
 def rewards(request):
     return render(request, 'rewards.html')
 
 
+@login_required
 def impact(request):
     return render(request, 'impact.html')
 
 
+@login_required
 def analytics(request):
     return render(request, 'analytics.html')
 
 
+@login_required
 def nearby(request):
     return render(request, 'nearby.html')
 
 
+@login_required
 def community(request):
     return render(request, 'community.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 
 
@@ -231,12 +243,21 @@ def firebase_auth_view(request):
     try:
         data = json.loads(request.body)
         id_token = data.get('idToken')
+        full_name = data.get('fullName', '')
+
         decoded_token = firebase_auth.verify_id_token(id_token)
         uid = decoded_token['uid']
         email = decoded_token.get('email')
 
         # Get or create user
         user, created = User.objects.get_or_create(username=uid, defaults={'email': email})
+
+        if full_name:
+            name_parts = full_name.split(' ', 1)
+            user.first_name = name_parts[0]
+            if len(name_parts) > 1:
+                user.last_name = name_parts[1]
+            user.save()
 
         # Log the user in
         login(request, user)
